@@ -87,12 +87,38 @@
 	
 	
 	
-\section{Notes for Some Difficult Points}
+\section{Notes for Important Concepts}
 
-	Here are some difficult points that might needs extra attention for people unfamiliar with ...
+\subsection{Temporal Difference Learning}
+	Temporal Difference (TD) Learning is a Reinforcement Learning (RL) method with form of bootstrapping. Bootstrapping is a resampling method used in model selection, assessment and estimation of statistical properties. To do bootstrapping, we draw a sample from your dataset with replacement repeatedly until we create a new sample of the same size (sometimes larger or smaller) as the original dataset. TD Learning is a method for learning the value function, which is a prediction of future rewards, based on the idea of updating estimates based partly on other learned estimates. This is where the bootstrapping aspect comes in.
 	
-	\begin{enumerate}
-		\item 
-	\end{enumerate}
+	The core of TD learning is the \textit{TD error}, a difference between estimated values at successive time steps. In its simplest form TD(0), or Temporal Difference Learning with a look-ahead of zero, the TD error for state-value estimation is given by:
+	\begin{equation}\label{eq:TD_error}
+		\delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t),
+	\end{equation}
+	where \( R_{t+1} \) is the reward received at time \( t+1 \), \( \gamma \) is the discount factor, \( V(S_t) \) is the current estimate of the state value, and \( V(S_{t+1}) \) is the estimate of the next state's value.
 	
+	In TD learning, the value function for a state is updated incrementally after each step. The update is done in the direction of the TD error. For example, the value function update rule in TD(0) is:
+	\begin{equation}
+		V(S_t) \leftarrow V(S_t) + \alpha \delta_t,
+	\end{equation}
+	where \( \alpha \) is the learning rate.
+	
+	TD methods do not require waiting until the end of an episode to perform updates, making them more suitable for continuing environments. They can learn online after every step.
+	
+\subsection{Combination of Loss Functions}
+	The total loss of the model in the paper is combined with four loss functions at each time step.
+	
+	\textbf{Loss 1: } TD error -- the error from \autoref{eq:TD_error}.
+	
+	\textbf{Loss 2: } Termination condition error -- the cumulative reward process $ Y_t $ needs to satisfy $ Y_T = g(X_T) $, and so we calculate the error of such termination condition by taking the Mean Square Error (MSE) between $ g(x_T^j) $ and the estimation of $ Y_T $ which is $ \mathcal{N}_1(T,x_T^j) $. Note that since we do not requite the simulation of entire trajectory, the terminal state $ X_T $ is taken from the previous iteration in the calculation. 
+	
+	\textbf{Loss 3: } Termination condition gradients error -- the gradient of $ Y_T $ and $ g(X_T) $ should also be equal, therefore, the MSE of the gradients of the two estimations in Loss 2 is taken as another loss.
+	
+	\textbf{Loss 4: } Neural network approximation error -- 
+	
+	
+\subsection{L\'evy-type Forward-backward Stochastic Processes}
+
+
 \end{document}

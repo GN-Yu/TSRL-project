@@ -119,6 +119,22 @@
 	
 	
 \subsection{L\'evy-type Forward-backward Stochastic Processes}
-
+	L\'evy process is a stochastic process with independent, stationary increments. More specifically, it is a stochastic process $X=\left\{X(t): t \geq 0\right\}$ that satisfies the following properties:
+	\begin{enumerate}
+		\item \textbf{Starts at Zero: }$X(0)=0$ almost surely;
+		\item \textbf{Independent increments: }For any $0 \leq t_1<t_2<\cdots<t_n<\infty, X(t_2)-X(t_1), X(t_3)-X(t_2), \ldots, X(t_n)-X(t_{n-1})$ are mutually independent;
+		\item \textbf{Stationary increments: }For any $s<t, X(t)-X(s)$ is equal in distribution to $X(t-s)$;
+		\item \textbf{Continuous in probability: }For any $\varepsilon>0$ and $t \geq 0$, $\lim \limits_{h \rightarrow 0} P\left(\left|X(t+h)-X(t)\right|>\varepsilon\right)=0$.
+	\end{enumerate}
+	 The most well-known L\'evy processes are the Brownian motion (Wiener process), which is a process without jumps, and the Poisson process, which can include jumps. A L\'evy process $X=\left\{X(t): t \geq 0\right\}$ defined as above is a Brownian motion if for any $t\ge 0$,
+	 $$ X(t) \sim \text{N}(\mu, \sigma^2), $$
+	 where $ \mu = 0 $ and $ \sigma = t $.
+	 A L\'evy process $X=\left\{X(t): t \geq 0\right\}$ defined as above is a Poisson process if for any $t\ge 0$,
+	 $$ X(t) \sim \text{Pois}(\Lambda), $$ 
+	 where $ \Lambda = \lambda(t-s) $, and $ \lambda $ is called rate or intensity.
+	 
+	 The It\^o's formula is ...
+	 
+	 By applying the L\'evy form and the It\^o's formula, we can derive the process of $ X_t $ to solve the PIDE (2.4), which is the key idea of the whole paper. The discrete version of such process stated by equation (2.9) and (2.10) can be applied to simulate for numerical approximation.
 
 \end{document}

@@ -39,13 +39,13 @@
 \maketitle
 
 \section{Introduction}
-	This question is about reading the paper \textit{Temporal Difference Learning for High-Dimensional PIDEs with Jumps, Liwei Lu, Hailong Guo, Xu Yang, Yi Zhu, 2023} and replicate the reinforcement learning algorithm in it. 
+	This question is about reading the paper \textit{Temporal Difference Learning for High-Dimensional PIDEs with Jumps, Liwei Lu, Hailong Guo, Xu Yang, Yi Zhu, 2023}~\cite{lu2023temporal} and replicate the reinforcement learning algorithm in it. 
 	
-	A \textit{Partial Integro-Differential Equation (PIDE)} is a type of equation that combines features of both partial differential equations (PDEs) and integral equations. In a PIDE, the unknown function is defined over a domain and the equation involves both partial derivatives and integral operators acting on this function. More specifically, a PIDE typically takes the  general form
+	A \textit{Partial Integro-Differential Equation (PIDE)} is a type of equation that combines features of both partial differential equations (PDEs) and integral equations. It has wide-spread applications in various scenarios, and particularly in finance. In a PIDE, the unknown function is defined over a domain and the equation involves both partial derivatives and integral operators acting on this function. More specifically, a PIDE typically takes the  general form
 	\begin{equation}
 		\frac{\partial u}{\partial t}+\mathcal{L} u+\mathcal{I} u=f,
 	\end{equation}
-	in which $u = u(\textbf{x}, t)$ is the unknown function, $\mathcal{L} u$ denotes a differential operator, which is often a linear or nonlinear combination of spatial derivatives of $u$, and $\mathcal{I} u$ represents an integral operator, involving an integral of $u$ with respect to space, possibly weighted by a kernel function.
+	in which $u = u(t, \textbf{x})$ is the unknown function with a time variable $ t \in [0, T] $ and a spatial variable $ \textbf{x}\in \mathbb{R}^d $, $\mathcal{L}$ denotes a differential operator with respect to the spatial variable $ \textbf{x}$, and $\mathcal{I}$ represents an integral operator of $u$ with respect to $ \textbf{x} $.
 	
 	\textit{Jumps} refer to sudden, significant changes in the price of an asset. These can be caused by various events such as economic announcements, geopolitical events, or sudden market movements. Unlike the normal price fluctuations assumed in models like Black-Scholes, jumps represent discontinuities, where the asset price changes significantly in a very short period, often unpredictably. 
 		
@@ -140,5 +140,11 @@
 	 By applying the L\'evy type stochastic integrals and the It\^o's formula to equation (2.6), we can derive equation (2.8). (needs to check)  The system of (2.6) and (2.8) are referred to as the \textit{forward-backward stochastic differential equation (FBSDE) system}. Equation (2.6) is called the ``forward'' equation since it describes the evolution of the state variable \( X_t \) in a forward manner in time, starting from an initial condition at \( t = 0 \) and moving towards \( t = T \). The dynamics of \( X_t \) are influenced by a deterministic term (\( b(X_t) \)), stochastic term (Brownian motion \( dW_t \)), and a jump term involving the Lévy process \( \int_{\mathbb{R}^d} G(X_t, z) \tilde{N}(dt, dz) \). Equation (2.8) describes the dynamics of the processes \( Y_t \), \( Z_t \), and \( U_t \), which are connected to the value function \( u(t, X_t) \) and its derivatives. Unlike the forward equation, it is called a ``backward'' equation as it starts with a terminal condition at time \( T \) (i.e., \( Y_T = g(X_T) \)) and then moves backward in time. This backward structure is intrinsic to many problems in stochastic control and finance, where the final payoff or condition is known, and the goal is to determine the optimal strategy or value function backward in time.
 	 
 	 The processes of $ (X_t, Y_t, Z_t, U_t) $ satisfying equation (2.8) provides a foundation for assessing the accuracy of the approximate solution $ u(t,x) $ to the PIDE (2.4), which is the key idea of the whole paper. The discrete version stated by equation (2.9) and (2.10) can be applied to simulate for numerical approximation.
+	 
+\section{Further Questions}
+	There is an important reference~\cite{Zeng2022} that also uses such approach to solve high-dimensional parabolic PDEs.
 
+
+\bibliographystyle{siam}
+\bibliography{ref.bib}
 \end{document}
